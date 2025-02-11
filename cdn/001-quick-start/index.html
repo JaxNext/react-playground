@@ -18,17 +18,63 @@
   <!-- Your React code -->
   <script type="text/babel">
     function App() {
+      const name = 'Jax'
+      const imgUrl = 'https://picsum.photos/200/300'
+      const img = (
+        <img
+          style={{
+            width: '200px',
+            height: '200px',
+            borderRadius: '50%',
+            objectFit: 'cover',
+          }}
+          src={imgUrl} />
+      )
+      const [globalCount, setGlobalCount] = React.useState(0)
+      function globalClickfunc() {
+        setGlobalCount(globalCount + 1)
+      }
       return (
         <div>
-          <h1>Hello React!</h1>
-          <p>This is a basic React template using CDN.</p>
+          <h1>Hello { name }!</h1>
+          { img }
+          <p>Hahahah</p>
+          <Btn text="CountA" globalCount={ globalCount } globalClickfunc={ globalClickfunc } />
+          <Btn text="CountB" globalCount={ globalCount } globalClickfunc={ globalClickfunc } />
+          <List />
         </div>
-      );
+      )
     }
-
+    function Btn({ text = 'Count', globalCount = 0, globalClickfunc = () => {} }) {
+      function showMsg() {
+        console.log('Hello')
+        setCount(count + 1)
+        globalClickfunc()
+      }
+      const [count, setCount] = React.useState(0)
+      return (
+        <button
+          className="btn"
+          onClick={showMsg}>{ text } { count } { globalCount }</button>
+      )
+    }
+    function List() {
+      const list = ['a', 'b', 'c']
+      return (
+        <ul>
+          { list.map(x => <li key={ x }>{ x }</li>) }
+        </ul>
+      )
+    }
     const container = document.getElementById('root');
     const root = ReactDOM.createRoot(container);
-    root.render(<App />);
+    root.render(<App />)
   </script>
+  <style>
+    .btn {
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
 </body>
 </html>

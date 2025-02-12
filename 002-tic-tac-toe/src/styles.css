@@ -56,6 +56,15 @@ body {
   padding: 0;
 }
 
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.row {
+  display: flex;
+}
+
 .square {
   background: #fff;
   border: 1px solid #999;
@@ -87,4 +96,5 @@ body {
 
 .game-info {
   margin-left: 20px;
+  cursor: pointer;
 }

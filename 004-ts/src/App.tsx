@@ -18,9 +18,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <MyBtn count={count} handleClick={() => setCount(count => count + 1)} />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -29,6 +27,24 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
+  )
+}
+// interface MyBtnProps {
+//   count: number;
+//   handleClick: React.MouseEventHandler<HTMLButtonElement>;
+// }
+type MyBtnProps = {
+  count: number;
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+// Union type
+type Status = 'pending' | 'success' | 'fail'
+const [status, setStatus] = useState<Status>()
+function MyBtn ({ count, handleClick }: MyBtnProps) {
+  return (
+    <button onClick={handleClick}>
+      count is {count}
+    </button>
   )
 }
 
